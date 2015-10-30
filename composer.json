@@ -1,0 +1,20 @@
+{
+  "name": "nebo15/lumen.mandrill",
+  "description": "A Mandrill worker for Lumen based on DrunkenRussian",
+  "keywords": ["lumen", "mandrill", "drunken-russian"],
+  "authors": [
+    {
+      "name": "Paul Bardack",
+      "homepage": "http://paulbardack.com"
+    }
+  ],
+  "license" : "MIT",
+  "require": {
+    "mandrill/mandrill": "1.0.*",
+    "nebo15/drunken-russian": "dev-master"
+  },
+  "autoload": {
+    "psr-4": { "App\\": "src" }
+  },
+  "minimum-stability": "dev"
+}
