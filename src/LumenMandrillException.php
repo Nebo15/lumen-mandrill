@@ -7,7 +7,7 @@
 
 namespace App;
 
-class Exception
+class LumenMandrillException extends \Exception
 {
 
 }

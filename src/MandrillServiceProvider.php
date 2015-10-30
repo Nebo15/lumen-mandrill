@@ -7,7 +7,6 @@
 
 namespace App;
 
-use App\Mandrill;
 use Laravel\Lumen\Application;
 use Illuminate\Support\ServiceProvider;
 
@@ -16,8 +15,10 @@ class MandrillServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('\App\Mandrill', function (Application $app) {
-            # ToDo: throw exception whe MANDRILL_KEY is not set
             $key = env('MANDRILL_KEY', false);
+            if(!$key){
+                throw new LumenMandrillException('set mandrill key for LumenMandrill');
+            }
 
             return new Mandrill(
                 new \Drunken\Manager($app->make('db')->connection()->getMongoDB()),
