@@ -14,7 +14,7 @@ class MandrillServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->singleton('\App\Mandrill', function (Application $app) {
+        $this->app->singleton('mandrill', function (Application $app) {
             $key = env('MANDRILL_KEY', false);
             if(!$key){
                 throw new LumenMandrillException('set mandrill key for LumenMandrill');
