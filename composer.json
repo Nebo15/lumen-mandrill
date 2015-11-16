@@ -11,10 +11,10 @@
   "license" : "MIT",
   "require": {
     "mandrill/mandrill": "1.0.*",
-    "nebo15/drunken-russian": "1.0.0"
+    "nebo15/drunken-russian": "*"
   },
   "autoload": {
     "psr-4": { "App\\": "src" }
   },
-  "version": "1.0.0"
+  "version": "1.0.1"
 }
