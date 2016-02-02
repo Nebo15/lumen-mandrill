@@ -57,8 +57,11 @@ class MandrillWorker extends AbstractWorker
                     "merge_language" => "handlebars",
                     "global_merge_vars" => $global_merge_vars
                 ];
+                if (isset($data['attachments'])) {
+                    $message['attachments'] = $data['attachments'];
+                }
                 $result = $mandrill->messages->sendTemplate($data['template_name'], [], $message);
-                
+
                 if (is_array($result) and isset($result[0])) {
                     if ($result[0]['status'] == 'sent' or $result[0]['status'] == 'queued') {
                         return true;
