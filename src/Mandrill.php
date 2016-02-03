@@ -21,8 +21,16 @@ class Mandrill
         $this->mandrill_key = $mandrill_key;
     }
 
-    public function send($email, $template, $subject, $email_data, $from_email, $from_name, $reply_to)
-    {
+    public function send(
+        $email,
+        $template,
+        $subject,
+        $email_data,
+        $from_email,
+        $from_name,
+        $reply_to,
+        array $attachments = []
+    ) {
         $data = [
             'mandrill_key' => $this->mandrill_key,
             'subject' => $subject,
@@ -33,6 +41,9 @@ class Mandrill
             'email_data' => $email_data,
             'template_name' => $template,
         ];
+        if ($attachments) {
+            $data['attachments'] = $attachments;
+        }
         try {
             $mongo_result = $this->drunken->add('Mandrill', $data);
             if ($mongo_result['ok'] != 1) {
