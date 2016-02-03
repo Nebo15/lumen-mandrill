@@ -29,7 +29,10 @@ class Mandrill
         $from_email,
         $from_name,
         $reply_to,
-        array $attachments = []
+        array $attachments = [],
+        $priority = 0,
+        $expiresAt = null,
+        $ignoreFieldsForDrunkenUniqueHash = null
     ) {
         $data = [
             'mandrill_key' => $this->mandrill_key,
@@ -45,8 +48,8 @@ class Mandrill
             $data['attachments'] = $attachments;
         }
         try {
-            $mongo_result = $this->drunken->add('Mandrill', $data);
-            if ($mongo_result['ok'] != 1) {
+            $result = $this->drunken->add('Mandrill', $data, $priority, $expiresAt, $ignoreFieldsForDrunkenUniqueHash);
+            if ($result['ok'] != 1) {
                 $this->log->addError(sprintf(
                     'Cannot save MandrillWorker task into mongo. Template: "%s", data: "%s"',
                     $template,
